@@ -2,7 +2,7 @@
 
 echo "Starting full Docker Compose project cleanup process..."
 
-# Check if docker-compose.yml file exists
+# Check if the docker-compose.yml file exists
 if [ ! -f "docker-compose.yml" ]; then
     echo "Error: docker-compose.yml file not found in the current directory."
     exit 1
@@ -10,21 +10,21 @@ fi
 
 # Function: Execute a command and continue even if it fails
 run_command() {
-    echo "Running: $1"
+    echo "Executing: $1"
     $1 || echo "Warning: Command '$1' failed, but continuing script execution."
 }
 
 # Stop and remove all containers
-run_command "docker-compose down --remove-orphans"
+run_command "docker compose down --remove-orphans"
 
-# Remove project volumes
-run_command "docker-compose down -v"
+# Remove project-related volumes
+run_command "docker compose down -v"
 
-# Remove project-related images
-run_command "docker-compose down --rmi all"
+# Remove images used by the project
+run_command "docker compose down --rmi all"
 
-# Remove local host-mounted data directories
-echo "Removing local host-mounted data directories..."
+# Delete mapped data directories on the host
+echo "Deleting mapped data directories on the host..."
 data_dirs=$(grep -E '^\s*-\s*\./.+:/.*' docker-compose.yml | awk '{print $2}' | cut -d':' -f1)
 for dir in $data_dirs; do
     if [ -d "$dir" ]; then
@@ -33,7 +33,7 @@ for dir in $data_dirs; do
     fi
 done
 
-# Special handling for ./data directory
+# Special handling for the ./data directory
 if [ -d "./data" ]; then
     echo "Deleting ./data directory"
     run_command "rm -rf ./data"
@@ -47,8 +47,8 @@ docker volume ls --filter name=$(basename $(pwd))
 echo "Project networks:"
 docker network ls --filter name=$(basename $(pwd))
 
-echo "Cleanup completed."
-echo "Warning: This script has deleted local data directories defined in docker-compose.yml. Make sure you no longer need this data."
-echo "If any resources remain, you may need to remove them manually."
-echo "Note: If errors occurred during cleanup, it may be due to issues in the docker-compose.yml configuration."
-echo "Please review and fix any errors in the docker-compose.yml file if necessary."
+echo "Cleanup complete."
+echo "Warning: This script has deleted local data directories defined in docker-compose.yml. Please ensure you no longer need these data."
+echo "If any resources remain, you may need to manually remove them."
+echo "Note: If errors occur during cleanup, it may be due to configuration issues in the docker-compose.yml file."
+echo "Please review and fix any configuration errors in the docker-compose.yml file."
