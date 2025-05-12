@@ -82,7 +82,7 @@ services:
       - thingsly_network
 
   backend:
-    image: hantdev1/thingsly-go:v1.0.4-amd64
+    image: hantdev1/thingsly-go:v1.0.5-amd64
     ports:
       - "9999:9999"
     environment:
