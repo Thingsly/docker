@@ -1,6 +1,6 @@
 services:
   frontend:
-    image: hantdev1/thingsly-vue:v1.0.3-alpha.1
+    image: hantdev1/thingsly-vue:v1.0.4
     ports:
       - "8080:8080"
     environment:
@@ -39,7 +39,7 @@ services:
       - thingsly_network
 
   gmqtt:
-    image: hantdev1/thingsly-gmqtt:v1.0.1-amd64
+    image: hantdev1/thingsly-gmqtt:v1.0.2
     volumes:
       - gmqtt:/gmqttd
     ports:
@@ -82,7 +82,7 @@ services:
       - thingsly_network
 
   backend:
-    image: hantdev1/thingsly-go:v1.0.5-amd64
+    image: hantdev1/thingsly-go:v1.0.8
     ports:
       - "9999:9999"
     environment:
