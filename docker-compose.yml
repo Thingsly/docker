@@ -1,6 +1,6 @@
 services:
   frontend:
-    image: hantdev1/thingsly-vue:v1.0.5-alpha.2
+    image: hantdev1/thingsly-vue:v1.0.5-alpha.3
     ports:
       - "80:80"
       - "443:443"
