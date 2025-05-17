@@ -96,8 +96,8 @@ services:
       - "THINGSLY_DB_REDIS_ADDR=redis:6379"
       - "THINGSLY_DB_REDIS_PASSWORD=redis"
       - "THINGSLY_MQTT_SERVER=gmqtt"
-      - "THINGSLY_MQTT_ACCESS_ADDRESS=gmqtt:1883"
-      - "THINGSLY_MQTT_BROKER=gmqtt:1883"
+      - "THINGSLY_MQTT_ACCESS_ADDRESS=103.124.93.210:1883"
+      - "THINGSLY_MQTT_BROKER=103.124.93.210:1883"
       - "THINGSLY_LOG_LEVEL=error"
     depends_on:
       postgres:
