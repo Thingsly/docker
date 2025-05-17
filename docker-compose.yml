@@ -1,8 +1,9 @@
 services:
   frontend:
-    image: hantdev1/thingsly-vue:v1.0.5-alpha.1
+    image: hantdev1/thingsly-vue:v1.0.5-alpha.2
     ports:
-      - "8080:8080"
+      - "80:80"
+      - "443:443"
     environment:
       - "TZ=Asia/Ho_Chi_Minh"
       - "BACKEND_HOST=http://backend:9999"
