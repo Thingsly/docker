@@ -12,7 +12,7 @@ services:
         condition: service_started
     volumes:
       - nginx:/etc/nginx
-      - /home/hant/certs/live/dangky.app:/etc/nginx/ssl:ro
+      - /home/hant/certs:/etc/nginx/ssl:ro
     restart: unless-stopped
     networks:
       - thingsly_network
@@ -84,7 +84,7 @@ services:
       - thingsly_network
 
   backend:
-    image: hantdev1/thingsly-go:latest
+    image: hantdev1/thingsly-go:v1.0.9-beta.1 
     ports:
       - "9999:9999"
     environment:
